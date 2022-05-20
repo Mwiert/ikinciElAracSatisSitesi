@@ -1,4 +1,5 @@
-﻿using DataAccesLayer.Concretes.UserCrud;
+﻿using DataAccesLayer.Concretes;
+using EntitiyLayer.Concretes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,26 +8,23 @@ using System.Threading.Tasks;
 
 namespace ViewModelLayer.Concretes
 {
-    public class UserVM
+    public class OtherVM
     {
-        public bool logincheck;
-        public bool LoginUser(string username,string password)
+        public Arac AracEkle(Arac arac)
         {
-            logincheck = false;
             try
             {
-                using (var repo = new UserCRUD())
+                using (var repo = new OtherCRUD())
                 {
-                    logincheck = repo.UserLogin(username,password);
+                    repo.AracEkle(arac);
                 }
-                return logincheck;
+                return arac;
             }
             catch (Exception ex)
             {
 
                 throw;
             }
-
         }
     }
 }

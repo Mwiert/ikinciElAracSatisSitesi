@@ -21,6 +21,50 @@ namespace DataAccesLayer.Concretes.UserCrud
             connectionString = DbHelper.getConnectionString();
             loginStatus = false;
         }
+        public bool UserLogin(string username, string password)
+        {
+            try
+            {
+                var query = new StringBuilder();
+
+                query.Append("SELECT *From UserTable Where Email = @Email AND Password = @Password");
+
+                string commandText = query.ToString();
+
+                using (var dbConnection = new SqlConnection(connectionString))
+                {
+                    if (dbConnection.State != ConnectionState.Open)
+                    {
+                        dbConnection.Open();
+                    }
+
+                    using (var command = new SqlCommand(commandText))
+                    {
+                        command.Connection = dbConnection;
+
+                        DbHelper.AddParameter(command, "@Email", username, DbType.String, ParameterDirection.Input);
+                        DbHelper.AddParameter(command, "@Password", password, DbType.String, ParameterDirection.Input);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    loginStatus = true;
+                                }
+                            }
+                        }
+                    }
+                }
+                return loginStatus;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         public User AracEkle(User user)
         {
             try

@@ -10,7 +10,7 @@ using System.Data;
 
 namespace DataAccesLayer.Concretes
 {
-    public class OtherCRUD
+    public class OtherCRUD:IDisposable 
     {
         public string connectionString { get; set; }
         public bool loginStatus { get; set; }
@@ -19,13 +19,40 @@ namespace DataAccesLayer.Concretes
             connectionString = DbHelper.getConnectionString();
             loginStatus = false;
         }
-        public Arac AracEkle()
+        public List<Arac> AracList()
         {
             try
             {
                 Arac arac = new Arac();
 
                 var query = new StringBuilder();
+
+                query.Append("Select * from AracBilgileri");
+                string cmdTxt = query.ToString();
+
+                using (var DbCon = new SqlConnection(connectionString))
+                {
+                    using(var cmd = new SqlCommand(cmdTxt))
+                    {
+                        if(DbCon.State != ConnectionState.Open)
+                        {
+                            DbCon.Open();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+        public Arac AracEkle(Arac arac)
+        {
+            try
+            {
+               var query = new StringBuilder();
                 query.Append("Insert into AracBilgileri ([AracTuru], [UretimYili], [Marka], [YakıtTuru], [MotorHacmi], [Km], [SatisFiyati], [AracResimleri], [AracResimleri1], [AracResimleri2], [SisFari], [KatlanılabilirAyna], [ParkSensoru], [MKS], [CamTavan], [OnayDurumu], [Model]) values (@AracTuru, @UretimYili, @Marka, @YakıtTuru, @MotorHacmi, @Km, @SatisFiyati, @AracResimleri, @AracResimleri1, @AracResimleri2, @SisFari, @KatlanılabilirAyna, @ParkSensoru, @MKS, @CamTavan, @OnayDurumu, @Model, )");
                 //query.Append("Insert into UserTable ([Ad], [Soyad], [Email], [Password])");
 
@@ -71,6 +98,11 @@ namespace DataAccesLayer.Concretes
                 throw;
             }
 
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
     
