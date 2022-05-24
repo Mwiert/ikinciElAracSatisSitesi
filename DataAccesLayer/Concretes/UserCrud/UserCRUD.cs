@@ -1,4 +1,5 @@
-﻿using Helpers.Concretes.Helpers.DBHelper;
+﻿using EntitiyLayer.Concretes;
+using Helpers.Concretes.Helpers.DBHelper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,13 +21,13 @@ namespace DataAccesLayer.Concretes.UserCrud
             connectionString = DbHelper.getConnectionString();
             loginStatus = false;
         }
-        public bool adminLogin(string username, string password)
+        public bool UserLogin(string username, string password)
         {
             try
             {
                 var query = new StringBuilder();
 
-                query.Append("SELECT *From Admin Where Username = @Username AND Password = @Password");
+                query.Append("SELECT *From UserTable Where Email = @Email AND Password = @Password");
 
                 string commandText = query.ToString();
 
@@ -41,7 +42,7 @@ namespace DataAccesLayer.Concretes.UserCrud
                     {
                         command.Connection = dbConnection;
 
-                        DbHelper.AddParameter(command, "@Username", username, DbType.String, ParameterDirection.Input);
+                        DbHelper.AddParameter(command, "@Email", username, DbType.String, ParameterDirection.Input);
                         DbHelper.AddParameter(command, "@Password", password, DbType.String, ParameterDirection.Input);
 
                         using (var reader = command.ExecuteReader())
@@ -64,6 +65,44 @@ namespace DataAccesLayer.Concretes.UserCrud
                 throw ex;
             }
         }
+        public User AracEkle(User user)
+        {
+            try
+            {
+                var query = new StringBuilder();
+                query.Append("Insert into UserTable ([Ad], [Soyad], [Email], [Password]) values (@Ad, @Soyad, @Email, @Password)");
+
+                string cmdTxt;
+                cmdTxt = query.ToString();
+
+                using (var dbCon = new SqlConnection(connectionString))
+                {
+                    using (var cmd = new SqlCommand(cmdTxt))
+                    {
+                        if (dbCon.State != ConnectionState.Open)
+                        {
+                            dbCon.Open();
+                        }
+
+                        DbHelper.AddParameter(cmd, "",);
+                        DbHelper.AddParameter(cmd, "",);
+                        DbHelper.AddParameter(cmd, "",);
+                        DbHelper.AddParameter(cmd, "",);
+                        
+                        cmd.ExecuteNonQuery();
+
+                    }
+                }
+                return user;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+     
         public void Dispose()
         {
             throw new NotImplementedException();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntitiyLayer.Concretes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,17 +8,14 @@ using ViewModelLayer.Concretes;
 
 namespace ServiceLayer.Concretes.dotnet
 {
-    public class AdminService
+    public class OtherService
     {
-        AdminVM adminVM = new AdminVM();
-        public bool isLoggedin;
-        public bool AdminLogin(string username,string password)
+        OtherVM otherVM = new OtherVM();
+        public void AracEkle(Arac arac)
         {
             try
             {
-                isLoggedin = false;
-                isLoggedin = adminVM.adminLogin(username, password);
-                return isLoggedin;
+                otherVM.AracEkle(arac);
             }
             catch (Exception ex)
             {
