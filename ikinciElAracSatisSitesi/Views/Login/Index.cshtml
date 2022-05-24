@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/Index.cshtml";
 }
 
-<h1>Index</h1>
 <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
         <div class="content-wrapper d-flex align-items-center auth">
@@ -22,7 +21,7 @@
                   <div class="mt-3 text-center">
                     <a class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">Giriş yap</a>
                   </div>
-                  <div class="text-center mt-4 font-weight-light"> Hesabın yok mu? <a href="register.html" class="text-primary">  Kaydol</a>
+                  <div class="text-center mt-4 font-weight-light"> Hesabın yok mu? <a href=@Url.Action("Index","Register") class="text-primary">  Kaydol</a>
                   </div>
                 </form>
               </div>
