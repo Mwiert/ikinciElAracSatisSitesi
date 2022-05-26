@@ -26,5 +26,23 @@ namespace ViewModelLayer.Concretes
                 throw;
             }
         }
+
+        public List<Arac> ListArac()
+        {
+            try
+            {
+                List<Arac> aracs = new List<Arac>();
+                using (var repo = new OtherCRUD())
+                {
+                    aracs =repo.AracList();
+                }
+                return aracs;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }

@@ -9,9 +9,9 @@ namespace EntitiyLayer.Concretes
     public class User
     {
         public int UserId { get; set; }
-        public int Ad { get; set; }
-        public int Soyad { get; set; }
-        public int Email { get; set; }
-        public int Password { get; set; }
+        public string Ad { get; set; }
+        public string Soyad { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

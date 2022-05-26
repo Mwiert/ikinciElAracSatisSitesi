@@ -1,0 +1,24 @@
+﻿@using EntitiyLayer.Concretes
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+ <section class="container-fluid sec4">
+        <p>Arabanızı Seçin</p>
+        <h3>Arabanızı Seçin</h3>
+        <div class="row p-4">
+            @foreach(var item in (List<Arac>)ViewBag.AracList)
+            {
+                <div class="col-md-6 col-lg-3 p-3">
+                <div>
+                    <div class="card" style="height:24rem ">
+                         <img src="images/bg-2.jpg" class="card-img-top" alt="..." >
+                          <div class="card-body" style="padding-bottom: 10px;"><h5 class="card-title text-center">@item.SatisFiyati TL</h5> <p class="card-text">@item.UretimYili.Year<br /> @item.AracTuru<br />@item.Km</p><button type="submit" href="@Url.Action("","")" class="btn btn-primary">Hemen Kirala</button> <button class="btn btn-primary">Detaylar</button></div>
+                    </div>
+                </div>
+                </div>
+            }
+
+        </div>
+    </section>

@@ -9,7 +9,20 @@ namespace Helpers.Concretes.Helpers.DBHelper
 {
     public class DbHelper
     {
-        public static string getConnectionString()
+        private DbHelper()
+        {
+            
+        }
+        private static string Instance;
+        public static string GetInstance()
+        {
+            if (Instance == null)
+            {
+                Instance =  getConnectionString();
+            }
+            return Instance;
+        }
+        private static string getConnectionString()
         {
             string connectionString = "Data Source=MWIERT;Initial Catalog=ikinicElarac;Integrated Security=True";
             return connectionString;

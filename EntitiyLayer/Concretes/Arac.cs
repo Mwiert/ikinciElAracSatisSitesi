@@ -17,11 +17,8 @@ namespace EntitiyLayer.Concretes
         public string YakıtTuru { get; set; }
         public int MotorHacmi { get; set; }
         public int Km { get; set; }
-
         public int SatisFiyati { get; set; }
-        public byte[] AracResim { get; set; }
-        public byte[] AracResim1 { get; set; }
-        public byte[] AracResim2 { get; set; }
+        public string AracResim { get; set; }
         public bool SisFari { get; set; }
         public bool KatlanılabilirAyna { get; set; }
         public bool ParkSensoru { get; set; }

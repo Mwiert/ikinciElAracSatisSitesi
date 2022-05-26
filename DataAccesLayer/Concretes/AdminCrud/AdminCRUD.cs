@@ -15,7 +15,8 @@ namespace DataAccesLayer.Concretes.AdminCrud
         public bool loginStatus { get; set; }
         public AdminCRUD()
         {
-            connectionString= DbHelper.getConnectionString();
+            connectionString = DbHelper.GetInstance();
+            //connectionString= DbHelper.getConnectionString();
             loginStatus = false;
         }
         public bool adminLogin(string username, string password)
@@ -64,7 +65,7 @@ namespace DataAccesLayer.Concretes.AdminCrud
         }
         public void Dispose()
         {
-            throw new NotImplementedException();
+            GC.SuppressFinalize(true);
         }
     }
 }

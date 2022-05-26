@@ -23,5 +23,19 @@ namespace ServiceLayer.Concretes.dotnet
                 throw;
             }
         }
+        public List<Arac> listArac()
+        {
+            try
+            {
+                List<Arac> aracs = new List<Arac>();
+                aracs = otherVM.ListArac();
+                return aracs;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }

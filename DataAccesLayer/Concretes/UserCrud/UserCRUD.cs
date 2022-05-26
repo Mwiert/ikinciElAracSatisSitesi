@@ -18,8 +18,45 @@ namespace DataAccesLayer.Concretes.UserCrud
 
         public UserCRUD()
         {
-            connectionString = DbHelper.getConnectionString();
+            connectionString=DbHelper.GetInstance();
             loginStatus = false;
+        }
+        public User addUser(User user)
+        {
+            try
+            {
+                var query = new StringBuilder();
+
+                query.Append("INSERT into UserTable ([Ad], [Soyad], [Email], [Password]) values (@Ad, @Soyad, @Email, @Password)");
+
+                string commandText = query.ToString();
+
+                using (var dbConnection = new SqlConnection(connectionString))
+                {
+                    if (dbConnection.State != ConnectionState.Open)
+                    {
+                        dbConnection.Open();
+                    }
+
+                    using (var command = new SqlCommand(commandText))
+                    {
+                        command.Connection = dbConnection;
+
+                        DbHelper.AddParameter(command, "@Ad", user.Ad, DbType.String, ParameterDirection.Input);
+                        DbHelper.AddParameter(command, "@Soyad", user.Soyad, DbType.String, ParameterDirection.Input);
+                        DbHelper.AddParameter(command, "@Email", user.Email, DbType.String, ParameterDirection.Input);
+                        DbHelper.AddParameter(command, "@Password", user.Password, DbType.String, ParameterDirection.Input);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+                return user;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
         public bool UserLogin(string username, string password)
         {
@@ -84,10 +121,10 @@ namespace DataAccesLayer.Concretes.UserCrud
                             dbCon.Open();
                         }
 
-                        DbHelper.AddParameter(cmd, "",);
-                        DbHelper.AddParameter(cmd, "",);
-                        DbHelper.AddParameter(cmd, "",);
-                        DbHelper.AddParameter(cmd, "",);
+                        DbHelper.AddParameter(cmd, "@Ad",user.Ad ,DbType.String,ParameterDirection.Input);
+                        DbHelper.AddParameter(cmd, "@Soyad", user.Soyad, DbType.String, ParameterDirection.Input);
+                        DbHelper.AddParameter(cmd, "@Email", user.Email, DbType.String, ParameterDirection.Input);
+                        DbHelper.AddParameter(cmd, "@Password", user.Password, DbType.String, ParameterDirection.Input);
                         
                         cmd.ExecuteNonQuery();
 
@@ -102,10 +139,10 @@ namespace DataAccesLayer.Concretes.UserCrud
             }
 
         }
-     
+
         public void Dispose()
         {
-            throw new NotImplementedException();
+            GC.SuppressFinalize(true);
         }
     }
 }

@@ -1,5 +1,6 @@
-﻿@using EntitiyLayer.Concretes
-@model List<Arac>
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
 @{
 }
 <!DOCTYPE html>
@@ -10,6 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rent a Car</title>
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="./assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="./assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -22,9 +27,8 @@
     <script src="https://kit.fontawesome.com/38f6f3a993.js" crossorigin="anonymous"></script>
 
 </head>
-
-<body>
-    <section class="container-fluid sec1">
+  <body>
+      <section class="container-fluid sec1">
         <div class="overlay"></div>
         <div class="container">
             <nav class="navbar navbar-expand-lg">
@@ -42,10 +46,10 @@
                             <a class="nav-link" href="index.html">Anasayfa <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=@Url.Action("Index","Login")>Giriş yap</a>
+                            <a class="nav-link" href=@Url.Action("routetoAdd","User")>Arac ilanı Koy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=@Url.Action("Index","Register")>Kaydol</a>
+                            <a class="nav-link" href=@Url.Action("Logout","User")>Çıkış Yap</a>
                         </li>
                     </ul>
 
@@ -94,25 +98,8 @@
     </section>
     <script src="bootstrap/js/jquery-3.4.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
-    <section class="container-fluid sec4">
-        <p>Arabanızı Seçin</p>
-        <h3>Arabanızı Seçin</h3>
-        <div class="row p-4">
-            @foreach(var item in (List<Arac>)ViewBag.AracList)
-            {
-                <div class="col-md-6 col-lg-3 p-3">
-                <div>
-                    <div class="card" style="height:24rem ">
-                         <img src="images/bg-2.jpg" class="card-img-top" alt="..." >
-                          <div class="card-body" style="padding-bottom: 10px;"><h5 class="card-title text-center">@item.SatisFiyati TL</h5> <p class="card-text">@item.UretimYili.Year<br /> @item.AracTuru<br />@item.Km</p><button type="submit" href="@Url.Action("","")" class="btn btn-primary">Hemen Kirala</button> <button class="btn btn-primary">Detaylar</button></div>
-                    </div>
-                </div>
-                </div>
-            }
-
-        </div>
-    </section>
-    <footer>
+    @RenderBody()
+     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
@@ -138,6 +125,10 @@
             </div>
         </div>
     </footer>
-</body>
+    <script src="./assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="./assets/js/off-canvas.js"></script>
+    <script src="./assets/js/hoverable-collapse.js"></script>
+    <script src="./assets/js/misc.js"></script>
 
+  </body>
 </html>

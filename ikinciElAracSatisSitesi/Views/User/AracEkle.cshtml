@@ -1,0 +1,71 @@
+﻿@using EntitiyLayer.Concretes
+@{
+    ViewData["Title"] = "AracEkle";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+@{
+    Arac arac = new Arac();
+}
+@using (Html.BeginForm("ilanKoy", "User", FormMethod.Post))
+{
+<div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth">
+          <div class="row flex-grow">
+            <div class="col-lg-4 mx-auto">
+              <div class="auth-form-light text-left p-5">
+                <h4>Hemen kaydol</h4>
+                <form class="pt-3">
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" id="exampleInputTur" placeholder="Aracın türü" required name="@arac.AracTuru">
+                  </div>
+                  <div class="form-group">
+                    <input type="date" class="form-control form-control-lg" id="exampleInputYil" placeholder="Üretim yılı" required  name="@arac.UretimYili">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" id="exampleInputMarka" placeholder="Aracon markası" required  name="@arac.Marka">
+                  </div>
+                  <div class="form-group">
+                    <input type="number" class="form-control form-control-lg" id="exampleInputModel" placeholder="Aracın modeli" required  name="@arac.Model">
+                  </div>
+                  <div class="form-group">
+                    <input type="number" class="form-control form-control-lg" id="exampleInputYakit" placeholder="Yakıt türü" required  name="@arac.YakıtTuru">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" id="exampleInputMotor" placeholder="Aracın motoru" required  name="@arac.MotorHacmi">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" id="exampleInputKm" placeholder="Aracın kilometresi" required  name="@arac.Km">
+                  </div>
+                  <div class="form-group">
+                    <input type="number" class="form-control form-control-lg" id="exampleInputFiyat" placeholder="Satış fiyatı" required  name="@arac.SatisFiyati">
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" class="form-control form-control-lg" id="exampleInputFar" placeholder="Sis farı (0 = yok , 1 = var.)"  name="@arac.SisFari">
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" class="form-control form-control-lg" id="exampleInputAyna" placeholder="katlanılabilir ayna  (0 = yok , 1 = var.)"  name="@arac.KatlanılabilirAyna">
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" class="form-control form-control-lg" id="exampleInputSensor" placeholder="Park sensörü  (0 = yok , 1 = var.)"  name="@arac.ParkSensoru">
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" class="form-control form-control-lg" id="exampleInputKilit" placeholder="Merkezi kilit sistemi  (0 = yok , 1 = var.)"  name="@arac.MKS">
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" class="form-control form-control-lg" id="exampleInputTavan" placeholder="Cam tavan  (0 = yok , 1 = var.)"  name="@arac.CamTavan">
+                  </div>
+                   <div class="form-group">
+                    <input type="file" class="form-control form-control-lg" id="exampleInputTavan" @*name="@arac.AracResim"*@>
+                  </div>
+                  <div class="mt-3 text-center">
+                    <a class="btn btn-gradient-primary font-weight-medium auth-form-btn"  href="@Url.Action("ilanKoy","User")">Ekle</a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+         
+}
